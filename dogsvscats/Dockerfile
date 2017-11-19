@@ -19,7 +19,7 @@ WORKDIR data-science-portfolio/dogsvscats/
 # Install virtual-env and activate it
 RUN pip install --upgrade pip                      # upgrade pip
 RUN pip install --upgrade virtualenv               # install virtualenv
-RUN virtualenv .env                                      # create environment in .env
+RUN virtualenv .env                                # create environment in .env
 RUN source .env/bin/activate                       # activate virtual environment
 
 # install virtual env
