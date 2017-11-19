@@ -5,7 +5,7 @@
 The problem is taken from [Kaggle Dogs vs. Cats Redux: Kernels Edition](https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition#evaluation)
 It is an object recognition problem to determine is it a cat or a dog given a picture.
 
-### Getting Started
+### Virtual Environment
 1. Install [virtualenv](http://conda.pydata.org/miniconda.html) if you have not done so
 `python -m pip install -U pip venv`
 2. Create environment in .env
@@ -16,11 +16,11 @@ It is an object recognition problem to determine is it a cat or a dog given a pi
 ### Managing Dependencies
 1. Activate the env: `source .env/bin/activate`
 2. Update `requirements.txt`
-3. Update the env: `conda env update`
+3. Update the env: `pip install -r requirements.txt`
 
-### Install Spacy id model
-1. Go to spacy_id folder: `cd rasa_server/spacy_id`
-2. Fetch latest submodule: `git submodule init` then `git submodule update`
+### Download data
+1. Download [kaggle data](`https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data`)
+2. Split: `git submodule init` then `git submodule update`
 3. Install spacy requirements: `pip install -r requirements.txt`
 4. Install this library as dependency: `pip install -e .`
 5. Create data directory: `mkdir spacy/data`
