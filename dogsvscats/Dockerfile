@@ -1,5 +1,6 @@
 FROM ubuntu
 MAINTAINER impulse.impulse0@gmail.com
+ARG GIT_VER=unknown
 
 # update ubuntu
 RUN apt-get update && apt-get -y upgrade
@@ -11,7 +12,7 @@ RUN apt-get install -y python-pip
 RUN apt-get install -y git
 
 # clone git
-RUN git clone https://github.com/novan-p-simanjuntak/data-science-portfolio.git
+RUN GIT_VER=${GIT_VER} git clone https://github.com/novan-p-simanjuntak/data-science-portfolio.git
 
 # Change dir to project dogsvscats
 WORKDIR data-science-portfolio/dogsvscats/
@@ -20,7 +21,7 @@ WORKDIR data-science-portfolio/dogsvscats/
 RUN pip install --upgrade pip                      # upgrade pip
 RUN pip install --upgrade virtualenv               # install virtualenv
 RUN virtualenv .env                                # create environment in .env
-RUN source .env/bin/activate                       # activate virtual environment
+RUN /bin/bash -c "source .env/bin/activate"         # activate virtual environment
 
 # install virtual env
 RUN pip install -r requirements.txt
