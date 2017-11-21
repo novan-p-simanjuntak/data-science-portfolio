@@ -20,36 +20,27 @@ It is an object recognition problem to determine is it a cat or a dog given a pi
 
 ### Download data
 1. Download [kaggle data](`https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data`)
-2. Split: `git submodule init` then `git submodule update`
-3. Install spacy requirements: `pip install -r requirements.txt`
-4. Install this library as dependency: `pip install -e .`
-5. Create data directory: `mkdir spacy/data`
-6. Make it a python package: `echo "" > spacy/data/__init__.py`
-6. Symlink to model: `python -m spacy link <path-to-id-model>  id` 
-(Ask the model from Novan (novan.p.simanjuntak@gdplabs.id))
+2. in dogsvscats/nbs/data folder, create a dogscats folder containing:
+    - test1 folder, contains test set from kaggle
+    - train folder, contains training set from kaggle
+    - valid folder, like train folder, there are 2 folders (cats and dogs), sample 1000 images for each class
+    - (optional) sample folder, containing test1, train, and valid folder, but only a little, this is for testing code only.
+3. Set `path` in the notebook to the folder that contains train, valid and test1 folder.
+    
 
 ### Contributing
 All code must follow PEP 8 with code E501 that limits all lines to a maximum of 79 characters ignored. 120 characters limit is exercised.
 
-### Running
-1. rasa_server
-    1. Change directory to rasa_server/
-    2. Run rasa server: `python -m rasa_nlu.server`
-    3. To validate rasa, send request using this command `curl RASA_HOST:RASA_PORT/status`, it must return http response status 200/OK
+### Run
+1. Run using NPS-dogsvscats-kaggle.ipynb. This will create a submission file in the sample_path.
+You can submit it to kaggle.
     
-### Deployment
-1. rasa_server
-    ##### Environment Variables
-    * RASA_HOST
-    * RASA_PORT
+### Run using docker
+There is a need using docker when training in cloud using GPU.
+To do this:
+1. Download docker images in [dockerhub](``)
+2. Run docker using command `sudo docker run -p 8888:8888 nps_vgg16_dogsvscats`
 
-### Accuracy Testing
-Adding module to evaluate model's accuracy by using jarvis's bca data.
-1. In order to use it there are some things to be prepared:
-    1. Make sure id language model is available for spacy
-    2. Prepare model in this following path tests/accuracy/accuracy_projects/test Model can also be trained by set "do_train" in tests/accuracy/config_model_accuracy.json to true. The model will be trained using from tests/accuracy/data/jarvis_data_for_rasa.json
-    3. data for do the model testing need to be prepared and placed in tests/accuracy/data/rasa_dummy.json
-    4. create folder for output in path tests/accuracy/accuracy_projects
-    5. name for the project name can be customized in tests/accuracy/config_model_accuracy.json by edit
-2. Run it by using pytest
-3. Output: json file that gives the correct and false prediction for every entity and intent from the example in testing file. File will be saved in tests/accuracy/report/{timestamp}.json
+### Build docker
+1. Set your working directory to dogsvscats. This folder contains Dockerfile.
+2. Build docker using command `sudo docker build --build-arg GIT_VER=<unique_number> -t vgg16_dogsvscats:<tag> .`
