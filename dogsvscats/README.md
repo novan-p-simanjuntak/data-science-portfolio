@@ -32,7 +32,8 @@ It is an object recognition problem to determine is it a cat or a dog given a pi
 All code must follow PEP 8 with code E501 that limits all lines to a maximum of 79 characters ignored. 120 characters limit is exercised.
 
 ### Run
-1. Run using NPS-dogsvscats-kaggle.ipynb. This will create a submission file in the sample_path.
+1. Run jupyter notebook with dogsvscats as working directory.
+2. open `NPS-dogsvscats-kaggle.ipynb`. This will create a submission file in the sample_path.
 You can submit it to kaggle.
     
 ### Run using docker
@@ -44,3 +45,4 @@ To do this:
 ### Build docker
 1. Set your working directory to dogsvscats. This folder contains Dockerfile.
 2. Build docker using command `sudo docker build --build-arg GIT_VER=<unique_number> -t vgg16_dogsvscats:<tag> .`
+Set git_ver as unique number to update github and tag as images tag.
