@@ -10,6 +10,7 @@ RUN apt-get install -y python-pip
 
 # install git
 RUN apt-get install -y git
+RUN apt-get install -y wget
 
 # clone git
 RUN GIT_VER=${GIT_VER} git clone https://github.com/novan-p-simanjuntak/data-science-portfolio.git
