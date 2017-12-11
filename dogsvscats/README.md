@@ -33,7 +33,7 @@ All code must follow PEP 8 with code E501 that limits all lines to a maximum of 
 
 ### Build docker
 1. Set your working directory to dogsvscats. This folder contains Dockerfile.
-2. Build docker using command `sudo docker build --build-arg GIT_VER=<unique_number> -t vgg16_dogsvscats:<tag> .`
+2. Build docker using command `sudo docker build -t vgg16_dogsvscats:<tag> .`
 Set git_ver as unique number to update github and tag as images tag.
 
 ### Run using docker
