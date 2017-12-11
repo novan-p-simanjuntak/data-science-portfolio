@@ -12,21 +12,24 @@ sudo apt-get install -y git
 sudo apt-get install -y wget
 
 # Installing CUDA
+sudo su
 echo "Checking for CUDA and installing."
 # Check for CUDA and try to install.
 if ! dpkg-query -W cuda-8-0; then
   # The 16.04 installer works with 16.10.
   curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
   dpkg -i ./cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
-  sudo apt-get update
-  sudo apt-get install cuda-8-0 -y
+  apt-get update
+  apt-get install cuda-8-0 -y
 fi
 # Enable persistence mode
 nvidia-smi -pm 1
 
 # Installing cuDNN yourself
 cd $HOME
-gsutil cp -r gs://dogsvscats/cudnn-8.0-linux-x64-v5.0-ga.tgz .
+# Download cuDNN library (edit to download via other methods)
+gsutil cp -r gs://word2vecnovan/cudnn-8.0-linux-x64-v5.0-ga.tgz .
+tar xzvf cudnn-8.0-linux-x64-v5.0-ga.tgz
 sudo cp cuda/lib64/* /usr/local/cuda/lib64/
 sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
 rm -rf ~/cuda
@@ -48,5 +51,12 @@ virtualenv .env
 # activate virtual environment
 source .env/bin/activate
 
+# Install pythonlib for cuda
+sudo apt-get install python-dev python-pip libcupti-dev
 # install virtual env
 pip install -r requirements.txt
+
+cd nbs/data/
+gsutil cp -r gs://word2vecnovan/dogscats.zip .
+mkdir dogscats
+tar -czvf dogscats.zip dogscats/

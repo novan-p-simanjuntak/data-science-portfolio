@@ -3,7 +3,7 @@ matplotlib
 pillow
 keras==1.2.2
 theano
-tensorflow
+tensorflow-gpu
 pandas
 scikit-learn
 bcolz
