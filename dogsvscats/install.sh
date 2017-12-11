@@ -46,7 +46,7 @@ pip install --upgrade virtualenv
 # create environment in .env
 virtualenv .env
 # activate virtual environment
-/bin/bash -c "source .env/bin/activate"
+source .env/bin/activate
 
 # install virtual env
 pip install -r requirements.txt

@@ -52,6 +52,11 @@ To do this:
 7. Run docker using command 
 `sudo docker run --rm -it -p 8888:8888 novanps/vgg16_dogsvscats:0.1 bash`
 
+### Run using install.sh
+1. Change command `gsutil cp -r gs://dogsvscats/cudnn-8.0-linux-x64-v5.0-ga.tgz .` accordingly to download cuDNN library
+2. Run install.sh
+`./install.sh`
+
 ### Run Jupyter Notebook
 1. Run jupyter notebook with dogsvscats as working directory.
 `jupyter notebook --no-browser --allow-root --ip=0.0.0.0 --port=8888`
